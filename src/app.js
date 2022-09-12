@@ -1,26 +1,26 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+// const cors = require('cors');
+
+const routes = require('./routes');
 
 dotenv.config();
-const { PORT = 3005 } = process.env;
+const { 
+  PORT = 3005,
+  MONGODB_URI
+} = process.env;
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+});
 
 const app = express();
-
-app.get('/', (req, resp) => {
-    resp.status(200);
-    resp.send('Hello world!');
-});
-
-app.get('/users', (req, resp) => {
-    resp.status(200);
-    resp.send('Here are users!');
-});
-
-app.get('/books', (req, resp) => {
-    resp.status(200);
-    resp.send('Here are books!');
-});
+app.use(bodyParser.json());
+// app.use(cors());
+app.use('/', routes);
 
 app.listen(PORT, () => {
-    console.log(`Server has started on http://localhost:${PORT}/`);
+  console.log(`Server has started on http://localhost:${PORT}/`);
 })
