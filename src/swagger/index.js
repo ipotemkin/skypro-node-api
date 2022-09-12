@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const { join } = require('path');
 // const { fileURLToPath } = require('url');
 const swaggerAutogen = require('swagger-autogen');
@@ -5,6 +6,11 @@ const swaggerAutogen = require('swagger-autogen');
 // const _dirname = dirname(fileURLToPath(import.meta.url));
 // const _dirname = dirname(fileURLToPath(__dirname));
 const _dirname = __dirname;
+
+dotenv.config();
+const { 
+  PORT = 3005,
+} = process.env;
 
 const doc = {
   // общая информация
@@ -58,7 +64,7 @@ const doc = {
       deletedCount: 1
     },
   },
-  host: 'localhost:3001',
+  host: `localhost:${PORT}`,
   schemes: ['http']
   }
 

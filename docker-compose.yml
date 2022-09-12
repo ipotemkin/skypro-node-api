@@ -1,13 +1,36 @@
-version: "3.8"
+version: "3.9"
 
 services:
 
-  mongo:
+  api:
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    env_file:
+      - .env
+    environment:
+      - PORT=${PORT?Variable not set}
+      - MONGODB_URI='mongodb://mongo:27017/users'
     ports:
-     - 27018:27017
-    image: mongo:4
+      - ${PORT?Variable not set}:${PORT?Variable not set}
+    command: npm run start
+    # depends_on:
+    #   mongo:
+    #     condition: service_started
+  
+  mongo:
+    image: mongo
+    # ports:
+    #   - 127.0.0.1:27017:27017
     volumes:
       - mongo-data:/data/db
+    # healthcheck:
+    #   test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 5
+    #   # start_period: 10s
+    # restart: always
 
 volumes:
   mongo-data:

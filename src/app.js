@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
 const getDb = require('./db/database');
-// const cors = require('cors');
+const cors = require('cors');
 
 const routes = require('./routes');
 const handleErrors = require('./middlewares/errors');
@@ -20,6 +20,8 @@ const {
   MONGODB_URI
 } = process.env;
 
+console.log(MONGODB_URI);
+
 // to get DB
 getDb(MONGODB_URI);
 
@@ -29,9 +31,9 @@ const app = express();
 app.use(bodyParser.json());
 
 // to add CORS contraints
-// app.use(cors());
+app.use(cors());
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // healthcheck endpoint
 app.use('/health', require('express-healthcheck')({
