@@ -1,3 +1,6 @@
+const fs = require('fs');
+const swaggerUi = require('swagger-ui-express');
+
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
@@ -8,6 +11,8 @@ const getDb = require('./db/database');
 const routes = require('./routes');
 const handleErrors = require('./middlewares/errors');
 const dbStatus = require('./middlewares/dbstatus')
+
+const swaggerFile = JSON.parse(fs.readFileSync('./src/swagger/output.json'));
 
 dotenv.config();
 const { 
@@ -25,6 +30,8 @@ app.use(bodyParser.json());
 
 // to add CORS contraints
 // app.use(cors());
+
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // healthcheck endpoint
 app.use('/health', require('express-healthcheck')({

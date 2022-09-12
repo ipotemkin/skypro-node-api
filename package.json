@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen": "node src/swagger/index.js"
   },
   "author": "igorpotemkin",
   "license": "ISC",
@@ -17,7 +18,9 @@
     "express": "^4.18.1",
     "express-healthcheck": "^0.1.0",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.6.0"
+    "mongoose": "^6.6.0",
+    "swagger-autogen": "^2.21.6",
+    "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"

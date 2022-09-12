@@ -1,0 +1,372 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Books API",
+    "description": "Books API. SkyPro Node Coursework",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users",
+        "description": "Get all users",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Array of all users",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a user",
+        "description": "Create a user",
+        "parameters": [
+          {
+            "name": "NewUser",
+            "in": "body",
+            "description": "New user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get the specified user",
+        "description": "Get the specified user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User with the specified ID",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update the specified user",
+        "description": "Update the specified user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID"
+          },
+          {
+            "name": "NewUser",
+            "in": "body",
+            "description": "User with updated fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete the specified user",
+        "description": "Delete the specified user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation result info",
+            "schema": {
+              "$ref": "#/definitions/DeletedInfo"
+            }
+          }
+        }
+      }
+    },
+    "/books/": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Get all books",
+        "description": "Get all books",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Array of all books",
+            "schema": {
+              "$ref": "#/definitions/Books"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Create a book",
+        "description": "Create a book",
+        "parameters": [
+          {
+            "name": "NewBook",
+            "in": "body",
+            "description": "New book",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewBook"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New book",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Get the specified book",
+        "description": "Get the specified book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Book ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book with the specified ID",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Update the specified book",
+        "description": "Update the specified book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Book ID"
+          },
+          {
+            "name": "NewBook",
+            "in": "body",
+            "description": "Book with updated fields",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewBook"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated book",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Books"
+        ],
+        "summary": "Delete the specified book",
+        "description": "Delete the specified book",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Book ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation result info",
+            "schema": {
+              "$ref": "#/definitions/DeletedInfo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "1"
+        },
+        "username": {
+          "type": "string",
+          "example": "james"
+        },
+        "name": {
+          "type": "string",
+          "example": "James"
+        },
+        "surname": {
+          "type": "string",
+          "example": "Fern"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/User"
+      }
+    },
+    "NewUser": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "james"
+        },
+        "name": {
+          "type": "string",
+          "example": "James"
+        },
+        "surname": {
+          "type": "string",
+          "example": "Fern"
+        }
+      }
+    },
+    "Book": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "1"
+        },
+        "title": {
+          "type": "string",
+          "example": "War and Peace"
+        },
+        "author": {
+          "type": "string",
+          "example": "L.Tolstoy"
+        },
+        "release_date": {
+          "type": "string",
+          "example": "1890"
+        }
+      }
+    },
+    "Books": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Books"
+      }
+    },
+    "NewBook": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "War and Peace"
+        },
+        "author": {
+          "type": "string",
+          "example": "L.Tolstoy"
+        },
+        "release_date": {
+          "type": "string",
+          "example": "1890"
+        }
+      }
+    },
+    "DeletedInfo": {
+      "type": "object",
+      "properties": {
+        "acknowledged": {
+          "type": "boolean",
+          "example": true
+        },
+        "deletedCount": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    }
+  }
+}

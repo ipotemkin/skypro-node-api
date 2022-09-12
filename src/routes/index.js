@@ -9,6 +9,6 @@ router.use(logger);
 // routes
 router.use('/users', userRouter);
 router.use('/books', bookRouter);
-router.get('/', greetings);
+// router.get('/', greetings);
 
 module.exports = router;
