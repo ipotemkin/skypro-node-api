@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 const greetings = (req, res, next) => {
     res.status(200);
-    res.send('Hello world!');    
+    res.send('Hello! For swagger please use /docs');    
 }
 
 const getUsers = (req, res, next) => {

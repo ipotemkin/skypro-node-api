@@ -1,9 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const createError = require('http-errors');
-const process = require('process');
+const getDb = require('./db/database');
 // const cors = require('cors');
 
 const routes = require('./routes');
@@ -16,16 +15,8 @@ const {
   MONGODB_URI
 } = process.env;
 
-mongoose.connect(MONGODB_URI,
-  { useNewUrlParser: true, },
-  () => {
-    if (!mongoose.connection.readyState) {
-      console.log('Database error');
-      process.exit(1);
-    }
-  }
-);
-
+// to get DB
+getDb(MONGODB_URI);
 
 const app = express();
 
@@ -34,7 +25,6 @@ app.use(bodyParser.json());
 
 // to add CORS contraints
 // app.use(cors());
-
 
 // healthcheck endpoint
 app.use('/health', require('express-healthcheck')({
