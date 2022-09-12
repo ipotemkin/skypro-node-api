@@ -1,67 +1,49 @@
+const createError = require('http-errors');
+
 const User = require('../models/user');
 
-const greetings = (req, resp, next) => {
-    resp.status(200);
-    resp.send('Hello world!');    
+const greetings = (req, res, next) => {
+    res.status(200);
+    res.send('Hello world!');    
 }
 
-const getUsers = (req, resp) => {
+const getUsers = (req, res, next) => {
   return User.find({})
-    .then(users => resp.status(200).send(users));
+    .then(users => res.status(200).send(users))
+    .catch(error => next(error));
 };
 
-// const answer = () => {
-//   return new Promise((success, reject) => {
-//     if 
-//   })
-// }
-
-const getUser = (req, resp, next) => {
+const getUser = async (req, res, next) => {
   const { id } = req.params;
   return User.findById(id)
     .then((user) => {
-      if (!user) resp.status(404).send('Not found');
-      else resp.status(200).send(user);
+      if (!user) throw createError(404, `User ${id} not found`); 
+      else res.status(200).send(user);
     })
-    .catch((err) => {
-      // next(err);
-      resp.status(400).send('Bad request');
-    });
+    .catch(err => next(err));
 };
 
-const createUser = (req, resp) => {
+const createUser = (req, res, next) => {
   const data = req.body;
   User.create(data)
-    .then(user => {
-      resp.status(201).send(user);
-    })
-    .catch(error => {
-      resp.status(500).send(error.message);
-    } )
+    .then(user => res.status(201).send(user))
+    .catch(error => next(error));
 }
 
-// TODO refresh user data after update
-const updateUser = (req, resp) => {
+const updateUser = (req, resp, next) => {
   const { id } = req.params;
   User.findByIdAndUpdate(id, {...req.body })
       .then(() => {
         User.findById(id)
-          .then(user => {
-            resp.status(200).send(user);
-          });
-      }).catch((error) => {
-      resp.status(500).send(error.message);
-  });
+          .then(user => resp.status(200).send(user)); // to get the refreshed user
+      }).catch(error => next(error));
 }
 
-const deleteUser = (req, resp) => {
+const deleteUser = (req, res, next) => {
   const {id} = req.params;
   User.deleteOne({"_id": id})
-      .then((dbResponse) => {
-        resp.status(200).send(dbResponse);
-      }).catch((error) => {
-      resp.status(500).send(error.message);
-  });
+      .then((dbResponse) => res.status(200).send(dbResponse))
+      .catch(error => next(error));
 }
 
 module.exports = {
