@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "title": "Books API",
-    "description": "Books API. SkyPro Node Coursework",
+    "description": "Books API. SkyPro Node.js Coursework",
     "version": "1.0.0"
   },
-  "host": "localhost:3001",
+  "host": "localhost:3005",
   "basePath": "/",
   "schemes": [
     "http"
@@ -326,9 +326,9 @@
           "type": "string",
           "example": "L.Tolstoy"
         },
-        "release_date": {
+        "release_year": {
           "type": "string",
-          "example": "1890"
+          "example": "1867"
         }
       }
     },
@@ -349,9 +349,9 @@
           "type": "string",
           "example": "L.Tolstoy"
         },
-        "release_date": {
+        "release_year": {
           "type": "string",
-          "example": "1890"
+          "example": "1867"
         }
       }
     },

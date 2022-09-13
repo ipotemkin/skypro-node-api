@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const process = require('process');
 
 const getDb = (dbURI) => {
-  console.log('dbURI =' + dbURI);  
+  // DEBUG
+  // console.log('dbURI =' + dbURI);  
+  
   mongoose.connect(dbURI,
       { useNewUrlParser: true, },
       () => {

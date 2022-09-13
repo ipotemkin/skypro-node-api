@@ -16,7 +16,7 @@ const doc = {
   // общая информация
   info: {
     title: 'Books API',
-    description: 'Books API. SkyPro Node Coursework'
+    description: 'Books API. SkyPro Node.js Coursework'
   },
   definitions: {
     // модель пользователя
@@ -43,7 +43,7 @@ const doc = {
       _id: '1',
       title: 'War and Peace',
       author: 'L.Tolstoy',
-      release_date: '1890'
+      release_year: '1867'
     },
     // модель списка книг
     Books: [
@@ -56,7 +56,7 @@ const doc = {
     NewBook: {
       title: 'War and Peace',
       author: 'L.Tolstoy',
-      release_date: '1890'
+      release_year: '1867'
     },
     // модель ответа при удалении записи  
     DeletedInfo: {

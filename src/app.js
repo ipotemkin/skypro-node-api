@@ -20,8 +20,6 @@ const {
   MONGODB_URI
 } = process.env;
 
-console.log(MONGODB_URI);
-
 // to get DB
 getDb(MONGODB_URI);
 

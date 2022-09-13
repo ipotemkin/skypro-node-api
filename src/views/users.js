@@ -1,11 +1,5 @@
 const createError = require('http-errors');
-
 const User = require('../models/user');
-
-// const greetings = (req, res, next) => {
-//     res.status(200);
-//     res.send('Hello! For swagger please use /docs');    
-// }
 
 const getUsers = async (req, res, next) => {
   // #swagger.tags = ['Users']
