@@ -46,22 +46,19 @@ REST API должно:
 - [ ]  Добавлен middleware логирования, который выводит в консоль адрес, на который пришел запрос (originalUrl).
 - [ ]  У проекта понятная структура, код разбит на роуты, модели, контроллеры и middleware.
 
-# Зависимости
-
-- MongoDB
-
 # Запуск проекта
 
-1. Запустите MongoDB
+**Для запуска у вас на компьютере должен быть установлен docker ^20.10.16 и docker-compose ^1.29.2**
+
+1. Склонируйте репозиторий
 ```
-$ docker run -d -p 127.0.0.1:27017:27017 --name your-project-name mongo
+$ git clone https://github.com/ipotemkin/skypro-node-api.git
 ```
-2. Установите необходимые библиотеки
+2. Создайте свой .env файл (пример в .env.example)
+
+3. В директории проекта запустите команду
 ```
-$ npm i
+$ docker-compose up -d
 ```
-3. Запустите API
-```
-$ npm run start
-```
-4. Документаиция SWAGGER UI по адресу ``http://localhost:3005/docs``
+4. API доступен по адресу: ``http://localhost:3005``
+5. Документация SWAGGER UI по адресу: ``http://localhost:3005/docs``
