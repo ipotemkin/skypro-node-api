@@ -9,7 +9,6 @@ const getDb = require('./db/database');
 const cors = require('cors');
 
 const routes = require('./routes');
-const handleErrors = require('./middlewares/errors');
 const dbStatus = require('./middlewares/dbstatus')
 
 const swaggerFile = JSON.parse(fs.readFileSync('./src/swagger/output.json'));
@@ -40,12 +39,6 @@ app.use('/health', require('express-healthcheck')({
 
 // routers
 app.use('/', routes);
-
-// to handle error 404
-app.use((req, res, next) => next(createError(404)));
-
-// to handle other errors
-app.use(handleErrors);
 
 app.listen(PORT, () => {
   console.log(`Server has started on http://localhost:${PORT}/`);
