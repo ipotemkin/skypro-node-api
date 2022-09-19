@@ -4,7 +4,6 @@ const swaggerUi = require('swagger-ui-express');
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const createError = require('http-errors');
 const getDb = require('./db/database');
 const cors = require('cors');
 
